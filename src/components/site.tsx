@@ -19,22 +19,22 @@ export async function SiteHeader({ locale }: { locale: string }) {
   const t = await getTranslations({ locale, namespace: "nav" });
   const header = (
     <div className="flex items-center justify-between gap-4">
-      <Link href={localizeHref("/", locale)} className="flex items-center gap-3">
-        <span className="grid h-9 w-9 place-items-center rounded-xl border border-border bg-muted text-sm font-black text-foreground">VV</span>
-        <span className="text-sm font-bold tracking-wide text-foreground">VV: ULTIMATUM</span>
+      <Link href={localizeHref("/", locale)} className="flex min-w-0 items-center gap-3">
+        <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl border border-border bg-muted text-sm font-black text-foreground">VV</span>
+        <span className="truncate text-sm font-bold tracking-wide text-foreground">VV: ULTIMATUM</span>
       </Link>
-      <nav className="hidden items-center gap-1 md:flex">
+      <nav className="hidden items-center gap-1 lg:flex">
         {NAVIGATION_CONFIG.map((item) => (
           <Link key={item.key} href={localizeHref(item.path, locale)} className="rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground transition hover:bg-muted hover:text-foreground">
             {t(item.key)}
           </Link>
         ))}
       </nav>
-      <div className="flex items-center gap-2">
+      <div className="flex shrink-0 items-center gap-1 sm:gap-2">
         <LanguageSwitcher locale={locale} />
         <ThemeToggle label={t("toggleTheme")} />
         <Sheet>
-          <SheetTrigger asChild className="md:hidden"><Button variant="outline" size="icon" aria-label={t("menu")}><Menu className="h-4 w-4" /></Button></SheetTrigger>
+          <SheetTrigger asChild className="lg:hidden"><Button variant="outline" size="icon" aria-label={t("menu")}><Menu className="h-4 w-4" /></Button></SheetTrigger>
           <SheetContent className="border-border bg-background text-foreground">
             <div className="mt-8 grid gap-2">
               {NAVIGATION_CONFIG.map((item) => <Link key={item.key} href={localizeHref(item.path, locale)} className="rounded-lg px-3 py-3 text-sm font-semibold hover:bg-muted">{t(item.key)}</Link>)}
