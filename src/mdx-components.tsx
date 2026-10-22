@@ -36,15 +36,17 @@ const defaultComponents: MDXComponents = {
   li: ({ children }) => <li className="pl-1 leading-7">{children}</li>,
   strong: ({ children }) => <strong className="font-semibold text-foreground">{children}</strong>,
   a: ({ href = "", children }) => (
-    <Link className="font-medium text-[hsl(var(--nav-theme))] underline-offset-4 hover:underline" href={href}>
+    <Link className="break-words font-medium text-[hsl(var(--nav-theme))] underline-offset-4 hover:underline" href={href}>
       {children}
     </Link>
   ),
   table: ({ children }) => (
-    <div className="my-7 overflow-hidden rounded-xl border border-border bg-card">
-      <table className="w-full text-sm">{children}</table>
+    <div className="my-7 w-full max-w-full overflow-x-auto rounded-xl border border-border bg-card">
+      <table className="w-full min-w-[480px] text-sm">{children}</table>
     </div>
   ),
+  pre: ({ children }) => <pre className="my-6 max-w-full overflow-x-auto rounded-xl border border-border bg-muted p-4 text-sm">{children}</pre>,
+  img: (props) => <img {...props} alt={props.alt ?? ""} className="my-6 h-auto max-w-full rounded-xl" />,
   thead: ({ children }) => <thead className="bg-muted/70 text-left text-xs uppercase tracking-[0.18em] text-muted-foreground">{children}</thead>,
   th: ({ children }) => <th className="px-4 py-3 font-semibold">{children}</th>,
   td: ({ children }) => <td className="border-t border-border px-4 py-3 text-muted-foreground">{children}</td>,

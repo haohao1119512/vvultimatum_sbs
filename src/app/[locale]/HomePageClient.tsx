@@ -22,11 +22,11 @@ export default function HomePageClient({ home, locale, articles, recentArticles 
     <div className="space-y-16">
       {/* Hero Section */}
       <section className="text-center">
-        <div className="mx-auto mb-5 flex items-center justify-center gap-2">
-          <h1 className="text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl lg:text-6xl">{home.hero.title}</h1>
+        <div className="mx-auto mb-5 flex flex-wrap items-center justify-center gap-2">
+          <h1 className="break-words text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl lg:text-6xl">{home.hero.title}</h1>
           <span className="mt-2 inline-flex items-center rounded-md border border-[hsl(var(--nav-theme))] bg-[hsl(var(--nav-theme))] px-2.5 py-0.5 text-xs font-semibold text-primary-foreground sm:-translate-y-1.5">{home.hero.eyebrow}</span>
         </div>
-        <div className="mx-auto mt-5 max-w-2xl">
+        <div className="mx-auto mt-5 max-w-4xl">
           <TrailerButton videoId={YOUTUBE_VIDEO_ID} />
         </div>
         <p className="mx-auto mt-5 max-w-3xl text-base leading-relaxed text-muted-foreground">{home.hero.description}</p>

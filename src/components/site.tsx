@@ -52,7 +52,7 @@ function ThemeToggle({ label }: { label: string }) {
 }
 
 export function Breadcrumbs({ items }: { items: { label: string; href?: string }[] }) {
-  return <nav className="mb-7 flex flex-wrap items-center gap-2 text-sm text-muted-foreground">{items.map((item, index) => <span key={`${item.label}-${index}`} className="flex items-center gap-2">{index > 0 && <ChevronRight className="h-4 w-4" />}{item.href ? <Link className="hover:text-foreground" href={item.href}>{item.label}</Link> : <span className="text-foreground">{item.label}</span>}</span>)}</nav>;
+  return <nav className="mb-7 flex flex-wrap items-center gap-2 text-sm text-muted-foreground">{items.map((item, index) => <span key={`${item.label}-${index}`} className="flex min-w-0 max-w-full items-center gap-2">{index > 0 && <ChevronRight className="h-4 w-4 shrink-0" />}{item.href ? <Link className="hover:text-foreground" href={item.href}>{item.label}</Link> : <span className="min-w-0 break-words text-foreground">{item.label}</span>}</span>)}</nav>;
 }
 
 export async function WikiSidebar({ locale, navGroups, currentPath }: { locale: string; navGroups: NavGroup[]; currentPath?: string }) {
@@ -73,7 +73,7 @@ export function TrailerCard({ videoId }: { videoId: string }) {
   return (
     <div className="group relative cursor-pointer overflow-hidden rounded-2xl border border-border shadow-lg transition-all duration-200">
       <div className="relative aspect-video w-full">
-        <img src="/images/hero-trailer-thumbnail.jpg" alt="VV: ULTIMATUM Official Trailer" className="size-full object-cover transition-all duration-200 group-hover:brightness-80" />
+        <img src="/images/hero-trailer-thumbnail.jpg" alt="VV: ULTIMATUM Official Trailer" width={1280} height={720} fetchPriority="high" loading="eager" decoding="async" className="size-full object-cover transition-all duration-200 group-hover:brightness-80" />
       </div>
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="flex size-20 items-center justify-center rounded-full bg-primary/10 backdrop-blur-md transition-transform duration-200 group-hover:scale-105 sm:size-24">
@@ -89,7 +89,7 @@ export function TrailerCard({ videoId }: { videoId: string }) {
 
 export function TrailerDialog({ videoId }: { videoId: string }) {
   return (
-    <dialog id="trailer-dialog" className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-200" onClick={(e) => { const d = document.getElementById("trailer-dialog") as HTMLDialogElement; if (e.target === d) { d.close(); d.classList.add("opacity-0", "pointer-events-none"); d.classList.remove("opacity-100", "pointer-events-auto"); } }}>
+    <dialog id="trailer-dialog" onClose={(e) => { const d = e.currentTarget; const f = document.getElementById("trailer-iframe") as HTMLIFrameElement | null; if (f) f.src = "about:blank"; d.classList.add("opacity-0", "pointer-events-none"); d.classList.remove("opacity-100", "pointer-events-auto"); }} className="fixed inset-0 z-[100] hidden items-center open:flex justify-center bg-black/80 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-200" onClick={(e) => { const d = document.getElementById("trailer-dialog") as HTMLDialogElement; if (e.target === d) { d.close(); d.classList.add("opacity-0", "pointer-events-none"); d.classList.remove("opacity-100", "pointer-events-auto"); } }}>
       <div className="relative w-full max-w-4xl mx-4">
         <iframe id="trailer-iframe" className="aspect-video w-full rounded-xl" allow="autoplay; encrypted-media" allowFullScreen />
         <button className="absolute -top-10 right-0 text-white/80 hover:text-white text-sm font-medium" onClick={() => { const d = document.getElementById("trailer-dialog") as HTMLDialogElement; d.close(); d.classList.add("opacity-0", "pointer-events-none"); d.classList.remove("opacity-100", "pointer-events-auto"); }}>✕ Close</button>
