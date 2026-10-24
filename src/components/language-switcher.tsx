@@ -52,8 +52,10 @@ export function LanguageSwitcher({ locale }: { locale: string }) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="sm" className="gap-1.5 text-xs font-medium text-muted-foreground hover:text-foreground">
-          <Globe className="h-4 w-4" />
+        <Button variant="ghost" size="sm" className="gap-1.5 text-xs font-medium text-muted-foreground hover:text-foreground"
+          aria-label={`Language: ${LOCALE_LABELS[locale as Locale]}`}
+        >
+          <Globe className="h-4 w-4" aria-hidden="true" />
           <span className="hidden sm:inline">{LOCALE_LABELS[locale as Locale]}</span>
         </Button>
       </DropdownMenuTrigger>
