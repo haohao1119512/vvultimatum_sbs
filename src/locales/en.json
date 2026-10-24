@@ -482,6 +482,17 @@
     "bossGuides": "Boss Guides",
     "buildGuide": "Build Guide",
     "privacyPolicy": "Privacy Policy",
-    "termsOfService": "Terms of Service"
+    "termsOfService": "Terms of Service",
+    "aboutUs": "About",
+    "contact": "Contact"
+  },
+  "contactPage": {
+    "metaTitle": "Contact — {siteName}",
+    "metaDescription": "Contact the {siteName} team with questions, corrections, or feedback.",
+    "title": "Contact {siteName}",
+    "intro": "Have a question, spotted a mistake in one of our guides, or want to share feedback about the wiki? We would love to hear from you.",
+    "emailLead": "Email us at",
+    "reply": "We read every message and try to reply within a few days.",
+    "disclaimer": "Please note: {siteName} is an unofficial fan-made wiki and is not affiliated with or endorsed by the game's developer or publisher. For account, purchase, or technical support with the game itself, please contact the official developer or your platform provider directly."
   }
 }

@@ -482,6 +482,17 @@
     "bossGuides": "ボスガイド",
     "buildGuide": "ビルドガイド",
     "privacyPolicy": "プライバシーポリシー",
-    "termsOfService": "利用規約"
+    "termsOfService": "利用規約",
+    "aboutUs": "サイトについて",
+    "contact": "お問い合わせ"
+  },
+  "contactPage": {
+    "metaTitle": "お問い合わせ — {siteName}",
+    "metaDescription": "{siteName}へのご質問、修正のご連絡、ご意見はこちらから。",
+    "title": "{siteName}へのお問い合わせ",
+    "intro": "ご質問、ガイド内の誤りのご指摘、Wikiへのご意見などがありましたら、お気軽にご連絡ください。",
+    "emailLead": "メールアドレス：",
+    "reply": "すべてのメッセージに目を通し、数日以内の返信を心がけています。",
+    "disclaimer": "{siteName}は非公式のファンメイドWikiであり、ゲームの開発元・販売元とは一切関係がなく、承認も受けていません。ゲーム本体のアカウント、購入、技術的なサポートについては、公式の開発元またはご利用のプラットフォームに直接お問い合わせください。"
   }
 }
