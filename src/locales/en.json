@@ -465,7 +465,8 @@
     "home": "Home",
     "noGuidesAvailable": "No guides available yet. Check back soon!",
     "byAuthor": "By",
-    "updatedOn": "Updated"
+    "updatedOn": "Updated",
+    "authorTeam": "VV Ultimatum Wiki Team"
   },
   "footer": {
     "aboutTitle": "VV Ultimatum Wiki",
