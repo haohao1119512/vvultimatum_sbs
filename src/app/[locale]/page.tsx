@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getMessages } from "next-intl/server";
+import { getMessages, setRequestLocale } from "next-intl/server";
 import { JsonLd, WikiSidebar } from "@/components/site";
 import { getAllContent, getDynamicNavigation, type ContentItem, CONTENT_TYPES } from "@/lib/content";
 import { routing, type Locale } from "@/i18n/routing";
@@ -23,10 +23,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default async function LocaleHomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  setRequestLocale(locale);
   const loc = locale as Locale;
   const messages = (await getMessages({ locale })) as Messages;
   const navGroups = getDynamicNavigation(loc);
   const webSite = { "@context": "https://schema.org", "@type": "WebSite", name: "VV Ultimatum Wiki", url: siteUrl, description: messages.home.meta.description };
+  const faqPage = { "@context": "https://schema.org", "@type": "FAQPage", inLanguage: locale, url: locale === "en" ? siteUrl : `${siteUrl}/${locale}`, mainEntity: messages.home.faq.items.map((item) => ({ "@type": "Question", name: item.question, acceptedAnswer: { "@type": "Answer", text: item.answer } })) };
 
   // 动态加载所有 content 目录下的文章
   const allArticles: ContentItem[] = [];
@@ -47,8 +49,9 @@ export default async function LocaleHomePage({ params }: { params: Promise<{ loc
   return (
     <main className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
       <JsonLd data={webSite} />
+      <JsonLd data={faqPage} />
       <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_300px]">
-        <HomePageClient home={messages.home} locale={locale} articles={allArticles} recentArticles={recentArticles} />
+        <HomePageClient home={messages.home} locale={locale} articles={allArticles.slice(0, 12)} recentArticles={recentArticles} />
         <WikiSidebar locale={locale} navGroups={navGroups} />
       </div>
     </main>
