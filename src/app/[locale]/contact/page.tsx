@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { LegalPage } from "@/components/legal-page";
 import { JsonLd } from "@/components/site";
 import { routing } from "@/i18n/routing";
+import { SITE_NAME } from "@/lib/site-name";
 
 // Site URL comes from NEXT_PUBLIC_SITE_URL (same as layout/sitemap); contact email is always contact@<domain without www>.
 const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://vvultimatum.sbs").replace(/\/+$/, "");
@@ -21,7 +22,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     title,
     description,
     alternates: { canonical: localePath(locale), languages: { ...Object.fromEntries(routing.locales.map((l) => [l, localePath(l)])), "x-default": pathname } },
-    openGraph: { title, description, url: `${siteUrl}${localePath(locale)}` },
+    openGraph: { siteName: SITE_NAME, title, description, url: `${siteUrl}${localePath(locale)}` },
   };
 }
 

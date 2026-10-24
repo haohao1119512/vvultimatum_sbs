@@ -7,6 +7,7 @@ import { notFound } from "next/navigation";
 import { ThemeProvider } from "next-themes";
 import { JsonLd, SiteFooter, SiteHeader } from "@/components/site";
 import { routing } from "@/i18n/routing";
+import { SITE_NAME } from "@/lib/site-name";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -23,7 +24,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     metadataBase: new URL(siteUrl),
     title: { default: "VV: ULTIMATUM Wiki", template: "%s" },
     description: "Complete VV: ULTIMATUM fan wiki with codes, bosses, builds, races, guides and progression walkthroughs.",
-    openGraph: { type: "website", locale, url: siteUrl, siteName: "VV Ultimatum Wiki", images: [{ url: image }] },
+    openGraph: { siteName: SITE_NAME, type: "website", locale, url: siteUrl, images: [{ url: image }] },
     twitter: { card: "summary_large_image", images: [image] },
   };
 }

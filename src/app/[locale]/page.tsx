@@ -5,6 +5,7 @@ import { getAllContent, getDynamicNavigation, type ContentItem, CONTENT_TYPES } 
 import { routing, type Locale } from "@/i18n/routing";
 import en from "@/locales/en.json";
 import HomePageClient from "./HomePageClient";
+import { SITE_NAME } from "@/lib/site-name";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://vvultimatum.sbs";
 
@@ -17,7 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     title: messages.home.meta.title,
     description: messages.home.meta.description,
     alternates: { canonical: locale === "en" ? "/" : `/${locale}`, languages: { en: "/" } },
-    openGraph: { title: messages.home.meta.title, description: messages.home.meta.description, url: siteUrl, images: [`${siteUrl}/images/hero.webp`] },
+    openGraph: { siteName: SITE_NAME, title: messages.home.meta.title, description: messages.home.meta.description, url: siteUrl, images: [`${siteUrl}/images/hero.webp`] },
   };
 }
 
@@ -28,7 +29,8 @@ export default async function LocaleHomePage({ params }: { params: Promise<{ loc
   const messages = (await getMessages({ locale })) as Messages;
   const navGroups = getDynamicNavigation(loc);
   const webSite = { "@context": "https://schema.org", "@type": "WebSite", name: "VV Ultimatum Wiki", url: siteUrl, description: messages.home.meta.description };
-  const faqPage = { "@context": "https://schema.org", "@type": "FAQPage", inLanguage: locale, url: locale === "en" ? siteUrl : `${siteUrl}/${locale}`, mainEntity: messages.home.faq.items.map((item) => ({ "@type": "Question", name: item.question, acceptedAnswer: { "@type": "Answer", text: item.answer } })) };
+  const stripText = (t: string) => t.replace(/<[^>]*>/g, "").replace(/\[([^\]]+)\]\([^)]*\)/g, "$1").replace(/[*_`#>]+/g, "").replace(/\s+/g, " ").trim();
+  const faqPage = { "@context": "https://schema.org", "@type": "FAQPage", inLanguage: locale, url: locale === "en" ? siteUrl : `${siteUrl}/${locale}`, mainEntity: messages.home.faq.items.map((item) => ({ "@type": "Question", name: stripText(item.question), acceptedAnswer: { "@type": "Answer", text: stripText(item.answer) } })) };
 
   // 动态加载所有 content 目录下的文章
   const allArticles: ContentItem[] = [];
