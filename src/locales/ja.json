@@ -463,7 +463,9 @@
     "readMore": "続きを読む",
     "toggleToc": "目次を開く/閉じる",
     "home": "ホーム",
-    "noGuidesAvailable": "ガイドはまだありません。お楽しみに！"
+    "noGuidesAvailable": "ガイドはまだありません。お楽しみに！",
+    "byAuthor": "執筆:",
+    "updatedOn": "更新日:"
   },
   "footer": {
     "aboutTitle": "VV Ultimatum Wiki",
